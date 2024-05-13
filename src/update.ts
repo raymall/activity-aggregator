@@ -1,14 +1,13 @@
-import { createServer } from 'node:http'
+import { exec } from 'child_process'
 
-const hostname = '127.0.0.1';
-const port = 3000;
+async function sendUpdate() {
+  exec(`curl -X POST -H 'Content-type: application/json' --data '{"text":"Hello, World!"}' ${process.env.SLACK_APP_WEBHOOK_URL}`, (error, stdout, stderr) => {
+    if (error) {
+      console.error(`Error executing cURL request: ${error} ${stderr}`)
+      return
+    }
+    console.log(`cURL request response: ${stdout}`)
+  })
+}
 
-const server = createServer((req, res) => {
-  res.statusCode = 200;
-  res.setHeader('Content-Type', 'text/plain');
-  res.end('Hello World');
-});
-
-server.listen(port, hostname, () => {
-  console.log(`Server running at http://${hostname}:${port}/`);
-});
+sendUpdate()

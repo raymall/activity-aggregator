@@ -145,7 +145,6 @@ async function sendUpdate() {
   const harvestPayload = formatMessage(harvestData)
   // console.log(JSON.stringify(harvestData, null, 2))
   // console.log(JSON.stringify(harvestPayload, null, 2))
-  // console.log(JSON.stringify(harvestPayload))
 
   await fetch(`${process.env.SLACK_APP_WEBHOOK_URL}`, {
     method: 'POST',

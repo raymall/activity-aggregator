@@ -8,18 +8,18 @@ dotenv.config()
 const convertTime = (time: number) => {
   const hours = Math.floor(time)
   const minutes = Math.round((time - hours) * 60)
-  const hourLabel = hours === 1 ? "hour" : "hours"
-  const minuteLabel = minutes === 1 ? "minute" : "minutes"
+  const hourLabel = 'h'
+  const minuteLabel = 'm'
 
   if (hours === 0) {
-    return `${minutes} ${minuteLabel}`
+    return `${minutes}${minuteLabel}`
   }
   
   if (minutes === 0) {
-    return `${hours} ${hourLabel}`
+    return `${hours}${hourLabel}`
   }
   
-  return `${hours} ${hourLabel} and ${minutes} ${minuteLabel}`
+  return `${hours}${hourLabel} ${minutes}${minuteLabel}`
 }
 
 const formatMessage = (harvestData: HarvestData[] | HarvestError) => {
@@ -91,7 +91,14 @@ const formatMessage = (harvestData: HarvestData[] | HarvestError) => {
                   "elements": [
                     {
                       "type": "text",
-                      "text": `${entry.title} - ${entry.task} `
+                      "text": `${entry.title} `,
+                      "style": {
+                        "bold": true
+                      }
+                    },
+                    {
+                      "type": "text",
+                      "text": `- ${entry.task} `
                     },
                     entry_hours
                   ]

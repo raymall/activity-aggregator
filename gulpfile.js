@@ -7,7 +7,6 @@ function typescript(cb) {
     console.log('Typescript compiled')
     exec(`node dist/update.js`, (error, stdout, stderr) => {
       console.log('Node script executed')
-      console.log(error, stdout, stderr)
     })
   })
   cb()

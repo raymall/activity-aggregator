@@ -4,9 +4,15 @@ const { exec } = require('child_process')
 function typescript(cb) {
   // body omitted
   exec(`pnpm tsc`, (error, stdout, stderr) => {
-    console.log('Typescript compiled')
+    if (error) {
+      console.error(`exec error: ${error}`)
+      return
+    }
+    
+    console.log('Compiling...')
     exec(`node dist/update.js`, (error, stdout, stderr) => {
-      console.log('Node script executed')
+      console.log('Completed')
+      console.log(stdout)
     })
   })
   cb()

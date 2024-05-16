@@ -1,7 +1,10 @@
-export type HarvestError = {
-  error: boolean
-  status: number
-  statusText: string
+export type HarvestRawEntry = {
+  client: string
+  project: string
+  title: string
+  task: string
+  reference: string
+  hours: number
 }
 
 export type HarvestEntry = {
@@ -21,20 +24,32 @@ export type HarvestEntry = {
   hours: number
 }
 
-export type Entry = {
-  client: string
-  project: string
-  title: string
-  task: string
-  reference: string
-  hours: number
-}
-
-export type HarvestDataEntry = Omit<Entry, 'client'> & {
+export type HarvestDataEntry = Omit<HarvestRawEntry, 'client'> & {
   client?: string
 }
 
 export type HarvestData = {
   client: string
   entries: HarvestDataEntry[]
+}
+
+export type HarvestError = {
+  error: boolean
+  status: number
+  statusText: string
+}
+
+export type SlackElementBlock = {
+  type: string
+  text?: string
+  url?: string
+  style?: {
+    italic?: true
+    bold?: true
+  }
+}
+
+export type SlackBlock = {
+  type: string
+  elements?: SlackElementBlock[]
 }

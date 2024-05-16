@@ -1,19 +1,12 @@
-import { Entry, HarvestData, HarvestEntry } from "../io"
+import type { HarvestRawEntry, HarvestData, HarvestEntry } from '../io'
+
+import { getCurrentDate } from '../utils/get-current-date'
 
 export async function getHarvestData() {
   const userId = process.env.HARVEST_USER_ID
 
   if (!userId) {
     throw new Error('HARVEST_USER_ID is not set')
-  }
-
-  const getCurrentDate = function() {
-    const currentDate = new Date()
-    const year = currentDate.getFullYear()
-    const month = String(currentDate.getMonth() + 1).padStart(2, '0')
-    const day = String(currentDate.getDate()).padStart(2, '0')
-
-    return `${year}-${month}-${day}`
   }
 
   const currentDate = getCurrentDate()
@@ -69,7 +62,7 @@ export async function getHarvestData() {
           hours: entry.hours,
         }
       })
-      .reduce((accumulator:HarvestData[], item:Entry) => {
+      .reduce((accumulator:HarvestData[], item:HarvestRawEntry) => {
         const clientName = item.client
   
         if (!accumulator.some((item) => item.client.includes(clientName))) {

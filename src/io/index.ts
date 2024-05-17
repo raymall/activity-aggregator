@@ -1,3 +1,9 @@
+export type Error = {
+  error: boolean
+  status: number
+  statusText: string
+}
+
 export type HarvestRawEntry = {
   client: string
   project: string
@@ -33,11 +39,7 @@ export type HarvestData = {
   entries: HarvestDataEntry[]
 }
 
-export type HarvestError = {
-  error: boolean
-  status: number
-  statusText: string
-}
+export type HarvestError = Error
 
 export type SlackElementBlock = {
   type: string
@@ -53,3 +55,36 @@ export type SlackBlock = {
   type: string
   elements?: SlackElementBlock[]
 }
+
+export type ClickUpEntry = {
+  custom_id?: string | null
+  name: string
+  status: {
+    status: string
+    color: string
+  }
+  priority: {
+    priority: string
+    color: string
+    orderindex: number
+  }
+  url: string
+  space: {
+    id: string
+  }
+}
+
+export type ClickUpSpace = {
+  id: string
+  name: string
+  color: string
+}
+
+export type ClickUpData = ClickUpEntry & {
+  space: ClickUpEntry['space'] & {
+    name: string
+    color: string
+  }
+}
+
+export type ClickUpError = Error

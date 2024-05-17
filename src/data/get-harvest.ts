@@ -12,7 +12,7 @@ export async function getHarvestData() {
   const currentDate = getCurrentDate()
 
   const params = {
-    user_id: process.env.HARVEST_USER_ID || '',
+    user_id: userId,
     from: currentDate,
     is_running: 'false',
   }
@@ -34,7 +34,7 @@ export async function getHarvestData() {
       return {
         error: true,
         status: 400,
-        statusText: `${response.statusText}: Failed to fetch data`,
+        statusText: `${response.statusText}: Failed to fetch Harvest data`,
       }
     }
 

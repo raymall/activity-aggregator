@@ -8,6 +8,14 @@ export const slackSection = (text: string) => ({
   }
 })
 
+export const slackHeader = (text: string) => ({
+  type: 'header',
+  text: {
+    type: 'plain_text',
+    text
+  }
+})
+
 export const slackRichTextSection = (...args: SlackBlock[]) => ({
   type: 'rich_text_section',
   elements: [

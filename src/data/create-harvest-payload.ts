@@ -9,7 +9,8 @@ import {
   slackRichTextList,
   slackLink,
   slackRichTextSection,
-  slackRichText
+  slackRichText,
+  slackHeader
 } from '../utils/format-slack-message'
 
 export async function createHarvestPayload(harvestData: HarvestData[] | HarvestError) {
@@ -17,14 +18,14 @@ export async function createHarvestPayload(harvestData: HarvestData[] | HarvestE
 
   if ('error' in harvestData) {
     harvestPayload.push(
-      slackSection(`Hi team! \n*_No Harvest time entries found_* for ${process.env.NODE_ENV === 'development' ? 'Raymall today' : '<@UKDM34WQ1> today'}`)
+      slackHeader(`No Harvest time entries found for Raymall today`)
     )
 
     return harvestPayload
   }
 
   harvestPayload.push(
-    slackSection(`Hi team! \n_Today ${process.env.NODE_ENV === 'development' ? 'Raymall worked on:_' : '<@UKDM34WQ1> worked on:_'}`)
+    slackHeader(`Today Raymall worked on:`)
   )
   
   harvestData

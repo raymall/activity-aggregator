@@ -2,6 +2,8 @@ import type { HarvestRawEntry, HarvestData, HarvestEntry } from '../io'
 
 import { getCurrentDate } from '../utils/get-current-date'
 
+import { createHarvestPayload } from './create-harvest-payload'
+
 export async function getHarvestData() {
   const userId = process.env.HARVEST_USER_ID
 
@@ -83,6 +85,9 @@ export async function getHarvestData() {
       }, [])
   
     return entriesData
+  }).then((entriesData) => {
+    const harvestPayload = createHarvestPayload(entriesData)
+    return harvestPayload
   })
 
   return harvestData

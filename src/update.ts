@@ -1,22 +1,13 @@
 import dotenv from 'dotenv'
 
 import { getHarvestData } from './data/get-harvest'
-import { createHarvestPayload } from './data/create-harvest-payload'
 import { getClickUpData } from './data/get-clickup'
-import { createClickUpPayload } from './data/create-clickup-payload'
 
 dotenv.config()
 
 async function sendUpdate() {
-  const harvestData = await getHarvestData()
-  const harvestPayload = await createHarvestPayload(harvestData)
-  // console.log(JSON.stringify(harvestData, null, 2))
-  // console.log(JSON.stringify(harvestPayload, null, 2))
-
-  const clickUpData = await getClickUpData()
-  const clickUpPayload = await createClickUpPayload(clickUpData)
-  // console.log(JSON.stringify(clickUpData, null, 2))
-  // console.log(JSON.stringify(clickUpPayload, null, 2))
+  const harvestPayload = await getHarvestData()
+  const clickUpPayload = await getClickUpData()
 
   await fetch(`${process.env.SLACK_APP_WEBHOOK_URL}`, {
     method: 'POST',

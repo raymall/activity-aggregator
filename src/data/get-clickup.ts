@@ -1,6 +1,7 @@
 import type { ClickUpEntry, ClickUpSpace } from '../io'
 
 import { unfurlSearchParams } from '../utils/unfurl-search-params'
+import { createClickUpPayload } from './create-clickup-payload'
 
 export async function getClickUpData() {
   const userId = process.env.CLICKUP_USER_ID
@@ -104,6 +105,9 @@ export async function getClickUpData() {
       })
   
     return tasksData
+  }).then((tasksData) => {
+    const clickUpPayload = createClickUpPayload(tasksData)
+    return clickUpPayload
   })
 
   return clickUpData

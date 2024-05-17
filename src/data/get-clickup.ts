@@ -11,7 +11,11 @@ export async function getClickUpData() {
   }
 
   const params = {
-    assignees: ['57298269', '57298269'],
+  /**
+   * Note: Strangely 'assignees' needs to be an array with more than one element
+   * More info: https://clickup.com/api/clickupreference/operation/GetFilteredTeamTasks/#!in=query&path=assignees&t=request
+   */
+    assignees: [userId, userId],
     subtasks: 'true'
   }
 

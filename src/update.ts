@@ -31,6 +31,7 @@ async function sendUpdate() {
     }
   }).then(async (response) => {
     if (!response.ok) {
+      console.log(`${response.statusText}: Failed to post data to Slack`)
       throw new Error(`${response.statusText}: Failed to post data to Slack`)
     }
   })

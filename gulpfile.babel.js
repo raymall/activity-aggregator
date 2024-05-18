@@ -1,8 +1,10 @@
 import gulp from 'gulp'
 import { exec } from 'child_process'
 
-const execCommand = (command, message, callbackFn) => {
-  exec(command, (error, stdout, stderr) => {
+const typescript = (cb) => {
+  exec(`pnpm tsc`, (error, stdout, stderr) => {
+    console.log('Compiling...')
+
     if (error) {
       console.error(command, error, stderr)
       return
@@ -10,18 +12,17 @@ const execCommand = (command, message, callbackFn) => {
       
     stdout ? console.log(stdout) : null
 
-    console.log(stdout)
-    console.log(message)
-    callbackFn ? callbackFn() : null
-  })
-}
+    exec(`node dist/update.js`, (error, stdout, stderr) => {
 
-const typescript = (cb) => {
-  execCommand(
-    `pnpm tsc`,
-    'Compiling...',
-    execCommand(`node dist/update.js`, 'Completed')
-  )
+      if (error) {
+        console.error(command, error, stderr)
+        return
+      }
+        
+      stdout ? console.log(stdout) : null
+      console.log('Completed.')
+    })
+  })
   cb()
 }
 

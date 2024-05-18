@@ -4,6 +4,9 @@
   "main": "dist/update.js",
   "description": "",
   "scripts": {
+    "dev": "gulp",
+    "build": "pnpm tsc",
+    "start": "node dist/update.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],

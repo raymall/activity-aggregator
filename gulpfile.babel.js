@@ -26,5 +26,5 @@ const typescript = (cb) => {
 }
 
 exports.default = function() {
-  gulp.watch('src/**/*.ts', typescript)
+  gulp.watch('app/**/*.ts', typescript)
 }

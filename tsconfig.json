@@ -28,7 +28,7 @@
     }
   },
   "include": [
-    "src/**/*"
+    "app/**/*"
   ],
   "exclude": [
     "**/*.spec.ts",

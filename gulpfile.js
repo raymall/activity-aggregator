@@ -1,26 +1,31 @@
-const { watch, series } = require('gulp')
+const { watch } = require('gulp')
 const { exec } = require('child_process')
 
 function typescript(cb) {
-  // body omitted
   exec(`pnpm tsc`, (error, stdout, stderr) => {
     if (error) {
-      console.error(`exec error: ${error}`)
+      console.error(`pnpm tsc`, error, stderr)
       return
     }
-    
+      
+    stdout ? console.log(stdout) : null
+
     console.log('Compiling...')
     exec(`node dist/update.js`, (error, stdout, stderr) => {
-      console.log('Completed')
+      if (error) {
+        console.error(`node`, error, stderr)
+        return
+      }
+      
+      stdout ? console.log(stdout) : null
+
       console.log(stdout)
+      console.log('Completed')
     })
   })
   cb()
 }
 
 exports.default = function() {
-  // You can use a single task
   watch('src/**/*.ts', typescript)
-  // Or a composed task
-  // watch('src/*.js', series(clean, javascript))
 }

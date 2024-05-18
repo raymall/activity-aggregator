@@ -1,15 +1,24 @@
 {
   "compilerOptions": {
-    "module": "commonjs",
+    "lib": ["es2023"],
+    "module": "node16",
+    "moduleResolution": "node16",
     "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
     "allowSyntheticDefaultImports": true,
-    "target": "es6",
     "noImplicitAny": true,
     "removeComments": true,
-    "moduleResolution": "node",
-    "sourceMap": false,
+    "sourceMap": true,
+    "allowUnreachableCode": false,
+    "exactOptionalPropertyTypes": true,
+    "noImplicitReturns": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "strictNullChecks": true,
+    "resolveJsonModule": true,
     "outDir": "dist",
     "strict": true,
+    "target": "es2022",
     "baseUrl": ".",
     "paths": {
       "*": [

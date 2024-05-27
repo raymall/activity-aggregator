@@ -8,7 +8,7 @@ export async function getHarvestData() {
   const userId = process.env.HARVEST_USER_ID
 
   if (!userId) {
-    throw new Error('HARVEST_USER_ID is not set')
+    throw new Error('HARVEST_USER_ID env is not set')
   }
 
   const currentDate = getCurrentDate()

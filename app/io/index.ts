@@ -41,21 +41,6 @@ export type HarvestData = {
 
 export type HarvestError = Error
 
-export type SlackElementBlock = {
-  type: string
-  text?: string
-  url?: string
-  style?: {
-    italic?: true
-    bold?: true
-  }
-}
-
-export type SlackBlock = {
-  type: string
-  elements?: SlackElementBlock[]
-}
-
 export type ClickUpEntry = {
   custom_id?: string | null
   name: string
@@ -88,3 +73,18 @@ export type ClickUpData = ClickUpEntry & {
 }
 
 export type ClickUpError = Error
+
+export type SlackElementBlock = {
+  type: string
+  text?: string
+  url?: string
+  style?: {
+    italic?: true
+    bold?: true
+  }
+}
+
+export type SlackBlock = {
+  type: string
+  elements?: SlackElementBlock[]
+}

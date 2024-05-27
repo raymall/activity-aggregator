@@ -5,6 +5,8 @@ const typescript = (cb) => {
   exec(`pnpm tsc`, (error, stdout, stderr) => {
     console.log('Compiling...')
 
+    stderr ? console.log(stderr) : null
+
     if (error) {
       console.error(command, error, stderr)
       return
@@ -14,8 +16,10 @@ const typescript = (cb) => {
 
     exec(`node dist/update.js`, (error, stdout, stderr) => {
 
+      stderr ? console.log(stderr) : null
+      
       if (error) {
-        console.error(command, error, stderr)
+        console.error(command, error)
         return
       }
         

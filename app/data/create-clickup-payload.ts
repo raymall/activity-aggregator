@@ -9,8 +9,6 @@ import {
 } from '../utils/format-slack-message'
 
 export async function createClickUpPayload(clickUpData: ClickUpData[] | ClickUpError) {
-  const minimumTasksToShow = 3
-
   const priorities:{ [key: string]: string } = {
     'urgent': ':bangbang:',
     'high': ':exclamation:'
@@ -34,18 +32,21 @@ export async function createClickUpPayload(clickUpData: ClickUpData[] | ClickUpE
   )
   
   clickUpData
-    .reduce((accumulator: ClickUpData[], task:ClickUpData, index: number) => {
+    .reduce((accumulator: ClickUpData[], task:ClickUpData) => {
       const priority = task.priority.priority
+      const status = task.status.status
+
       if (
-        index < minimumTasksToShow ||
         priority === 'urgent' ||
-        priority === 'high'
+        priority === 'high' ||
+        status === 'in progress'
       ) {
         accumulator.push(task)
       }
 
       return accumulator
     }, [])
+    .sort((a, b) => b.priority.orderindex - a.priority.orderindex)
     .map((task, index, arr) => {
       const custom_id = task.custom_id
       const name = task.name

@@ -78,7 +78,6 @@ export async function getClickUpData() {
     }
   
     const tasksData = parsedData.tasks
-      .sort((a:ClickUpEntry, b:ClickUpEntry) => a.priority.orderindex - b.priority.orderindex)
       .map((task:ClickUpEntry) => {
         const clickUpSpaceData = clickUpSpaces.spaces.find((space:ClickUpSpace) => space.id === task.space.id)
         const { name, color } = clickUpSpaceData
@@ -91,9 +90,9 @@ export async function getClickUpData() {
             color: task.status.color
           },
           priority: {
-            priority: task.priority.priority,
-            color: task.priority.color,
-            orderindex: task
+            priority: task?.priority?.priority ? task.priority.priority : 'normal',
+            color: task?.priority?.color ? task.priority.color : '#879dff',
+            orderindex: task?.priority?.orderindex ? task.priority.orderindex : 1
           },
           url: task.url,
           space: {

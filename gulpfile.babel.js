@@ -8,7 +8,7 @@ const typescript = (cb) => {
     stderr ? console.log(stderr) : null
 
     if (error) {
-      console.error(command, error, stderr)
+      console.error(error, stderr)
       return
     }
       
@@ -19,7 +19,7 @@ const typescript = (cb) => {
       stderr ? console.log(stderr) : null
       
       if (error) {
-        console.error(command, error)
+        console.error(error)
         return
       }
         

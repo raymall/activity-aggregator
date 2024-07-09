@@ -46,7 +46,7 @@ export async function createClickUpPayload(clickUpData: ClickUpData[] | ClickUpE
 
       return accumulator
     }, [])
-    .sort((a, b) => b.priority.orderindex - a.priority.orderindex)
+    .sort((a, b) => a.priority.orderindex - b.priority.orderindex)
     .map((task, index, arr) => {
       const custom_id = task.custom_id
       const name = task.name

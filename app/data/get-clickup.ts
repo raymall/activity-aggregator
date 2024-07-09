@@ -90,9 +90,9 @@ export async function getClickUpData() {
             color: task.status.color
           },
           priority: {
-            priority: task?.priority?.priority ? task.priority.priority : 'normal',
-            color: task?.priority?.color ? task.priority.color : '#879dff',
-            orderindex: task?.priority?.orderindex ? task.priority.orderindex : 1
+            priority: task.priority?.priority ?? 'normal',
+            color: task.priority?.color ?? '#879dff',
+            orderindex: Number(task.priority?.orderindex ?? '3')
           },
           url: task.url,
           space: {

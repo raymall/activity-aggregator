@@ -1,11 +1,11 @@
 
 import type { HarvestData, HarvestDataEntry, HarvestError } from '../io'
-import { formatHours } from '../utils/format-hours'
+// import { formatHours } from '../utils/format-hours'
 import {
   slackSection,
   slackDivider,
   slackText,
-  slackContext,
+  // slackContext,
   slackRichTextList,
   slackLink,
   slackRichTextSection,
@@ -35,7 +35,7 @@ export async function createHarvestPayload(harvestData: HarvestData[] | HarvestE
       if (client.entries.length) {
         const clientEntries = client.entries
           .map((entry:HarvestDataEntry) => {
-            const entry_hours = slackText(`(${formatHours(entry.hours)})`, { bold: true, italic: true })
+            // const entry_hours = slackText(`(${formatHours(entry.hours)})`, { bold: true, italic: true })
 
 
             const entryItem = 
@@ -47,24 +47,24 @@ export async function createHarvestPayload(harvestData: HarvestData[] | HarvestE
                     slackText(`${entry.title}`, { bold: true })
                 ),
                 slackText(` - ${entry.task} `),
-                entry_hours
+                // entry_hours
               )
   
             return entryItem
           })
 
-        const clientProjects = client.entries
-          .reduce((accumulator: string[], item:HarvestDataEntry) => {
-            if (!accumulator.includes(item.project)) {
-              accumulator.push(item.project)
-            }
+        // const clientProjects = client.entries
+        //   .reduce((accumulator: string[], item:HarvestDataEntry) => {
+        //     if (!accumulator.includes(item.project)) {
+        //       accumulator.push(item.project)
+        //     }
 
-            return accumulator
-          }, []).join(', ')
+        //     return accumulator
+        //   }, []).join(', ')
 
         harvestPayload.push(
           slackRichText(slackRichTextList(clientEntries)),
-          slackContext(`*${clientProjects}*`)
+          // slackContext(`*${clientProjects}*`)
         )
       }
 

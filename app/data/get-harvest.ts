@@ -83,7 +83,6 @@ export async function getHarvestData() {
   
         return accumulator
       }, [])
-  
     return entriesData
   }).then((entriesData) => {
     const harvestPayload = createHarvestPayload(entriesData)

@@ -1,6 +1,6 @@
 import type { HarvestRawEntry, HarvestData, HarvestEntry } from '../io'
 
-import { getCurrentDate } from '../utils/get-current-date'
+import { getUTCToEST } from '../utils/get-current-date'
 
 import { createHarvestPayload } from './create-harvest-payload'
 
@@ -11,7 +11,7 @@ export async function getHarvestData() {
     throw new Error('HARVEST_USER_ID env is not set')
   }
 
-  const currentDate = getCurrentDate()
+  const currentDate = getUTCToEST()
 
   const params = {
     user_id: userId,

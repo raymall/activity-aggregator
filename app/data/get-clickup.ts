@@ -87,7 +87,8 @@ export async function getClickUpData() {
           name: task.name,
           status: {
             status: task.status.status,
-            color: task.status.color
+            color: task.status.color,
+            orderindex: task.status.status === 'in progress' ? 1 : 2,
           },
           priority: {
             priority: task.priority?.priority ?? 'normal',
@@ -99,7 +100,9 @@ export async function getClickUpData() {
             id: task.space.id,
             ...(name && { name }),
             ...(color && { color }),
-          }
+          },
+          time_estimate: task.time_estimate,
+          time_spent: task.time_spent,
         }
       })
   

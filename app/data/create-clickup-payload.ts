@@ -35,7 +35,7 @@ export async function createClickUpPayload(clickUpData: ClickUpData[] | ClickUpE
     .reduce((accumulator: ClickUpData[], task:ClickUpData) => {
       const priority = task.priority.priority
       const status = task.status.status
-
+      
       if (
         priority === 'urgent' ||
         priority === 'high' ||
@@ -46,7 +46,13 @@ export async function createClickUpPayload(clickUpData: ClickUpData[] | ClickUpE
 
       return accumulator
     }, [])
-    .sort((a, b) => a.priority.orderindex - b.priority.orderindex)
+    .sort((a, b) => {
+      if (a.priority.orderindex !== b.priority.orderindex) {
+        return a.priority.orderindex - b.priority.orderindex
+      }
+      
+      return a.status.orderindex - b.status.orderindex
+    })
     .map((task, index, arr) => {
       const custom_id = task.custom_id
       const name = task.name

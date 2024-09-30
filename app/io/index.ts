@@ -47,6 +47,7 @@ export type ClickUpEntry = {
   status: {
     status: string
     color: string
+    orderindex: number
   }
   priority: {
     priority: string
@@ -57,6 +58,8 @@ export type ClickUpEntry = {
   space: {
     id: string
   }
+  time_estimate: number | null
+  time_spent: number | undefined
 }
 
 export type ClickUpSpace = {

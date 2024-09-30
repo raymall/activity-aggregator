@@ -34,6 +34,15 @@ export async function createHarvestPayload(harvestData: HarvestData[] | HarvestE
       
       if (client.entries.length) {
         const clientEntries = client.entries
+          .reduce((accumulator: HarvestDataEntry[], entry:HarvestDataEntry) => {
+            if (accumulator.find((item) => item.title === entry.title)) {
+              return accumulator
+            }
+            
+            accumulator.push(entry)
+      
+            return accumulator
+          }, [])
           .map((entry:HarvestDataEntry) => {
             // const entry_hours = slackText(`(${formatHours(entry.hours)})`, { bold: true, italic: true })
 

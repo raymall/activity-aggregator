@@ -13,7 +13,7 @@ export async function getClickUpData() {
 
   const params = {
   /**
-   * Note: Strangely 'assignees' needs to be an array with more than one element
+   * Note: Possible issue, 'assignees' needs to be an array with more than one element
    * More info: https://clickup.com/api/clickupreference/operation/GetFilteredTeamTasks/#!in=query&path=assignees&t=request
    */
     assignees: [userId, userId],

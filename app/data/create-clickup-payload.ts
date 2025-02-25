@@ -33,13 +33,12 @@ export async function createClickUpPayload(clickUpData: ClickUpData[] | ClickUpE
   
   clickUpData
     .reduce((accumulator: ClickUpData[], task:ClickUpData) => {
-      const priority = task.priority.priority
       const status = task.status.status
       
       if (
-        priority === 'urgent' ||
-        priority === 'high' ||
-        status === 'in progress'
+        status === 'ready to start' ||
+        status === 'in progress' ||
+        status === 'ready to fix'
       ) {
         accumulator.push(task)
       }
@@ -59,14 +58,12 @@ export async function createClickUpPayload(clickUpData: ClickUpData[] | ClickUpE
       const status = task.status.status
       const priority = task.priority.priority
       const url = task.url
-      const space = task.space.name
 
-      const title = `${convertNumberToEmoji((index + 1))} *- <${url}|${custom_id ? '[' + custom_id + ']' : ''} ${name}>*`
-      const project = `*${space}*`
+      const title = `${convertNumberToEmoji((index + 1))} * <${url}|${custom_id ? '[' + custom_id + ']' : ''} ${name}>*`
       const info = `Status: *${status.toLocaleUpperCase()}* | Priority: ${priorities[priority] ? priorities[priority] : ''}*${capitalizeString(priority)}*`
 
       clickUpPayload.push(
-        slackContext(`${title}\n${project}\n${info}`)
+        slackContext(`${title}\n${info}`)
       )
 
       if (index < arr.length - 1) {

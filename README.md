@@ -35,7 +35,7 @@ pnpm run dev
 
 ## Configuration
 
-To configure the application, you need to set up environment variables. Create a .env file from .env.template in the root directory of the project with the following content:
+To configure the application, you need to set up environment variables. Create a `.env` file from `.env.template` in the root directory of the project with the following content:
 
 ```bash
 NODE_ENV=development
@@ -55,10 +55,6 @@ HARVEST_API_TOKEN=
 
 # GITHUB
 GITHUB_TOKEN=
-
-
-### PRODUCTION
-# SLACK_APP_WEBHOOK_URL=
 ```
 
 ## Contributing
